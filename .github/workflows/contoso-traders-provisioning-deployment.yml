@@ -49,6 +49,12 @@ jobs:
     steps:
       - name: checkout code
         uses: actions/checkout@v3
+        # Add the manual installation step for AzCopy here
+      - name: install azcopy
+        run: |
+          wget https://aka.ms/downloadazcopy-v10-linux -O azcopy.tar.gz
+          tar -xvf azcopy.tar.gz
+          sudo mv ./azcopy_linux_amd64_*/azcopy /usr/local/bin/
       - name: azure login
         uses: azure/login@v1
         with:
